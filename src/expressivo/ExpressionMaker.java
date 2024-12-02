@@ -14,37 +14,13 @@ import expressivo.parser.ExpressionParser;
  */
 class ExpressionMaker implements ExpressionListener {
     private Stack<Expression> stack = new Stack<>();
-    // Invariant: stack contains the Expression value of each parse subtree that
-    // has been fully-walked so far, but whose parent has not yet been exited by
-    // the walk. The stack is ordered by recency of visit, so that the top of the
-    // stack is the Expression for the most recently walked subtree.
-    //
-    // At the start of the walk, the stack is empty, because no subtrees have
-    // been fully walked.
-    //
-    // Whenever a node is exited by the walk, the Expression values of its children
-    // are on top of the stack, in order with the last child on top. To preserve
-    // the invariant, we must pop those child Expression values from the stack,
-    // combine them with the appropriate Expression producer, and push back an
-    // Expression value representing the entire subtree under the node.
-    //
-    // At the end of the walk, after all subtrees have been walked and the the
-    // root has been exited, only the entire tree satisfies the invariant's
-    // "fully walked but parent not yet exited" property, so the top of the stack
-    // is the Expression of the entire parse tree.
     
-    /**
-     * Returns the expression constructed by this listener object.
-     * Requires that this listener has completely walked over an Expression parse
-     * tree using ParseTreeWalker.
-     * @return Expression for the parse tree that was walked
-     */
+    
     public Expression getExpression() {
         return stack.get(0);
     }
 
     @Override public void exitRoot(ExpressionParser.RootContext context) {
-        // do nothing, root has only one child so its value is 
         // already on top of the stack
     }
 

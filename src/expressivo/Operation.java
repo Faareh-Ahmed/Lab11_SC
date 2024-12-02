@@ -7,20 +7,7 @@ class Operation implements Expression {
     private final char op;
     private final Expression left, right;
     
-    // Abstraction function
-    //   represents an operation on two expressions left & right
-    // Rep invariant
-    //   operation is + or *
-    // Safety from rep exposure
-    //   all fields are immutable and final
     
-    /**
-     * Make an Operation of left and right.
-     * 
-     * @param op operation (+ or *)
-     * @param left left expression
-     * @param right right expression
-     */
     public Operation(char op, Expression left, Expression right) {
         this.op = op;
         this.left = left;
@@ -35,10 +22,7 @@ class Operation implements Expression {
         assert Set.of('+', '*').contains(op);
     }
     
-    /**
-     * @return a readable representation of this Operation
-     *         whitespace and parentheses are added for readability
-     */
+   
     @Override public String toString() {
         return "(" + left.toString() + " " + op + " " + right.toString() + ")";
     }
